@@ -54,11 +54,10 @@ define([
             //
             console.log('viewer.js.gis.dijit.FilterControls::filter', arguments);
 
-            var ingredients = this._getFilterCriteria();
-            var baked_goods = this._buildDefinitionQueryFromObject(ingredients);
-            console.log(baked_goods);
-
-            topic.publish(config.topics.search.filter, baked_goods);
+            var criteria = this._getFilterIngredients();
+            var expression = this._buildDefinitionQueryFromObject(criteria);
+            var pubData = {expression: expression};
+            topic.publish(config.topics.search.filter, pubData);
         },
         reset: function() {
             // summary:
@@ -69,19 +68,17 @@ define([
             topic.publish(config.topics.search.filter, '');
             topic.publish(config.topics.search.reset, {});
         },
-        _getFilterCriteria: function() {
+        _getFilterIngredients: function() {
             // summary:
-            //    gets the filter criteria from the childWidgets array
+            //    gets the filter ingredients from the childWidgets array
             //
-            console.log('viewer.js.gis.dijit.FilterControls::_getFilterCriteria', arguments);
+            console.log('viewer.js.gis.dijit.FilterControls::_getFilterIngredients', arguments);
 
             var criteria = {};
 
             array.forEach(this.childWidgets, function mixinCriteria(widget){
                 lang.mixin(criteria, widget.get('data'));
             }, this);
-
-            console.log(criteria);
 
             return criteria;
         },

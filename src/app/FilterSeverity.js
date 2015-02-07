@@ -16,7 +16,7 @@ define([
         //    Filter data based on crash severity
 
         templateString: template,
-        baseClass: 'filter-severity',
+        baseClass: 'filter-criteria',
 
         // Properties to be sent into constructor
         dataName: 'severity',
@@ -29,6 +29,15 @@ define([
             console.log('src.app.FilterSeverity::postCreate', arguments);
 
             this.inherited(arguments);
+        },
+        _setData: function(ingredients) {
+            // summary:
+            //    sets the criteria object from the data
+            //    ingredients
+
+            this.set('data', {
+                severity: ingredients
+            });
         }
     });
 });

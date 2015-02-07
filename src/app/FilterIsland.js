@@ -29,6 +29,15 @@ define([
             console.log('src.app.FilterIsland::postCreate', arguments);
 
             this.inherited(arguments);
+        },
+        _setData: function(ingredients) {
+            // summary:
+            //    sets the criteria object from the data
+            //    ingredients
+
+            this.set('data', {
+                islands: ingredients
+            });
         }
     });
 });

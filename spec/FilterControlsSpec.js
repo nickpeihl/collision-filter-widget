@@ -3,6 +3,7 @@ define([
     'app/FilterControls',
 
     'dojo/dom-construct',
+    'dojo/query',
     'dojo/Stateful',
     'dojo/topic'    
 ], function(
@@ -10,6 +11,7 @@ define([
     WidgetUnderTest,
 
     domConstruct,
+    query,
     Stateful,
     topic
 ) {
@@ -117,7 +119,7 @@ define([
                     })
                 ];
 
-                var actual = widget._getFilterCriteria();
+                var actual = widget._getFilterIngredients();
                 expect(actual).toEqual({
                     a: 1,
                     b: 2,
@@ -125,43 +127,55 @@ define([
                 });
             });            
         });
-        describe('filter topics', function(){
+        describe('topics', function() {
             var topicSpies, results;
-            beforeEach(function(){
-                widget.childWidgets = [
-                    new Stateful({
-                        data: {
-                            a: 1
-                        }
-                    }),
-                    new Stateful({
-                        data: {
-                            b: 2
-                        }
-                    }),
-                    new Stateful({
-                        data: {
-                            c: 3
-                        }
-                    })
-                ];
-
+            beforeEach(function() {
                 topicSpies = {
-                    filterCompleted: function(e){
-                        results = e.arguments;
+                    filterCompleted: function(exp){
+                        return;
+                    },
+                    resetCompleted: function() {
+                        return;
                     }
                 };
-
                 spyOn(topicSpies, 'filterCompleted');
-                topic.subscribe(config.topics.search.filter, topicSpies.filterCompleted);
+                spyOn(topicSpies, 'resetCompleted');
+                topic.subscribe(config.topics.search.filter, function(data) {
+                    topicSpies.filterCompleted(data.expression);
+                });
+                topic.subscribe(config.topics.search.reset, topicSpies.resetCompleted);                
             });
-            it('should publish a filter topic', function(){
-                pending();
+            
+            describe('filter button', function(){
+                beforeEach(function(){
+                    widget.childWidgets = [
+                        new Stateful({
+                            data: {
+                                islands: ['Orcas', 'San Juan']
+                            }
+                        }),
+                        new Stateful({
+                            data: {
+                                severity: [2]
+                            }
+                        })
+                    ];
+                });
+                it('should have published a filter topic', function(){
+                    widget.filter();
+                    expect(topicSpies.filterCompleted).toHaveBeenCalled();
+                });
+                it('should publish a specific filter topic', function(){
+                    widget.filter();
+                    var expression = "Island IN ('Orcas','San Juan') AND Sev_ IN ('2')";
+                    expect(topicSpies.filterCompleted).toHaveBeenCalledWith(expression);
+                });
             });
-        });
-        describe('reset button', function(){
-            it('should publish a reset topic', function(){
-                pending();
+            describe('reset button', function(){
+                it('should publish a reset topic', function(){
+                    widget.reset();
+                    expect(topicSpies.resetCompleted).toHaveBeenCalled();
+                });
             });
         });
     });

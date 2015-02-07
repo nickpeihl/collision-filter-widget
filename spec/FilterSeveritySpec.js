@@ -66,7 +66,7 @@ define([
                 widget._gatherData();
                 var actual = widget.get('data');
                 expect(actual).toEqual({
-                    criteria: ['3']
+                    severity: ['3']
                 });
             });
             it('gathers multiple values', function() {
@@ -76,7 +76,7 @@ define([
                 widget._gatherData();
                 var actual = widget.get('data');
                 expect(actual).toEqual({
-                    criteria: ['1','2']
+                    severity: ['1','2']
                 });
             });
             it('gathers no values', function() {
@@ -84,7 +84,7 @@ define([
                 widget._gatherData();
                 var actual = widget.get('data');
                 expect(actual).toEqual({
-                    criteria: null
+                    severity: null
                 });
             });
         });

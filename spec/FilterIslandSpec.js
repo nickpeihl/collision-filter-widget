@@ -66,7 +66,7 @@ define([
                 widget._gatherData();
                 var actual = widget.get('data');
                 expect(actual).toEqual({
-                    criteria: ['Orcas']
+                    islands: ['Orcas']
                 });
             });
             it('gathers multiple values', function() {
@@ -76,7 +76,7 @@ define([
                 widget._gatherData();
                 var actual = widget.get('data');
                 expect(actual).toEqual({
-                    criteria: ['Lopez','San Juan']
+                    islands: ['Lopez','San Juan']
                 });
             });
             it('gathers no values', function() {
@@ -84,7 +84,7 @@ define([
                 widget._gatherData();
                 var actual = widget.get('data');
                 expect(actual).toEqual({
-                    criteria: null
+                    islands: null
                 });
             });
         });

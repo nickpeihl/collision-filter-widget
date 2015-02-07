@@ -21,7 +21,7 @@ define([
         };
 
         beforeEach(function() {
-            widget = new WidgetUnderTest(null, domConstruct.create('div', null, document.body));
+            widget = new WidgetUnderTest({dataName: 'criteria'}, domConstruct.create('div', null, document.body));
         });
 
         afterEach(function() {
@@ -66,7 +66,7 @@ define([
                 widget._gatherData();
                 var actual = widget.get('data');
                 expect(actual).toEqual({
-                    criteria: ['Item1']
+                    ingredients: ['Item1']
                 });
             });
             it('gathers multiple values', function() {
@@ -76,7 +76,7 @@ define([
                 widget._gatherData();
                 var actual = widget.get('data');
                 expect(actual).toEqual({
-                    criteria: ['Item1','Item2']
+                    ingredients: ['Item1','Item2']
                 });
             });
             it('gathers no values', function() {
@@ -84,7 +84,7 @@ define([
                 widget._gatherData();
                 var actual = widget.get('data');
                 expect(actual).toEqual({
-                    criteria: null
+                    ingredients: null
                 });
             });
         });

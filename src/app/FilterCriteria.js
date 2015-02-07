@@ -1,4 +1,6 @@
 define([
+    'app/config',
+    
     'dojo/text!./templates/FilterCriteria.html',
 
     'dojo/_base/array',
@@ -9,10 +11,13 @@ define([
     'dojo/dom-class',
     'dojo/on',
     'dojo/query',
+    'dojo/topic',
 
     'dijit/_WidgetBase',
     'dijit/_TemplatedMixin'
 ], function(
+    config,
+    
     template,
 
     array,
@@ -23,6 +28,7 @@ define([
     domClass,
     on,
     query,
+    topic,
 
     _WidgetBase,
     _TemplatedMixin
@@ -35,7 +41,6 @@ define([
         baseClass: 'filter-criteria',
 
         // Properties to be sent into constructor
-        dataName: 'criteria',
 
         postCreate: function() {
             // summary:
@@ -75,7 +80,7 @@ define([
         },
         _gatherData: function() {
             // summary:
-            //     builds the object to publish
+            //     gathers the ingredients from the checkboxes
             //
             console.log('src.app.FilterCriteria::_gatherData', arguments);
 
@@ -86,9 +91,15 @@ define([
             if(ingredients.length < 1){
                 ingredients = null;
             }
+            this._setData(ingredients);
+        },
+        _setData: function(ingredients) {
+            // summary:
+            //     sets the criteria object from the data
+            //     ingredients
 
             this.set('data', {
-                criteria: ingredients
+                ingredients: ingredients
             });
         }
     });

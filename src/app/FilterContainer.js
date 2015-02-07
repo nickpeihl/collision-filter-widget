@@ -5,7 +5,8 @@ define([
     'app/FilterSeverity',
     
     'dojo/text!./templates/FilterContainer.html',
-    
+
+    'dojo/query',
     'dojo/topic',
 
     'dojo/_base/array',
@@ -23,6 +24,7 @@ define([
     
     template,
 
+    query,
     topic,
 
     array,
@@ -81,6 +83,7 @@ define([
             console.log('app.FilterContainer::setupConnections', arguments);
 
             topic.subscribe(config.topics.search.filter, lang.hitch(this, 'setDefExp'));
+            topic.subscribe(config.topics.search.reset, lang.hitch(this, 'resetFilters'));
         },        
         startup: function() {
             // summary:
@@ -94,15 +97,28 @@ define([
                 widget.startup();
             });
         },
+        resetFilters: function() {
+            // summary:
+            //    resets childwidget checkboxes and removes definition expression
+            //
+            console.log('app.FilterContainer::resetFilters', arguments);
+            var checkboxes = query('input[type="checkbox"]', this.domNode);
+            array.forEach(checkboxes, function(checkbox) {
+                checkbox.checked = false;
+            });
+        },
         setDefExp: function(expression) {
             // summary:
             //    sets definition expression for layer
             // expression
             console.log('app.FilterContainer::setDefExp', arguments);
 
+            var defExp = expression.expression;
+            console.log('New defintion expression: ', defExp);
+
             array.forEach(this.layerIds, lang.hitch(this, function(layerId) {
                 var layer = this.map.getLayer(layerId);
-                layer.setDefinitionExpression(expression);                
+                layer.setDefinitionExpression(defExp);
             }));
         }
     });
