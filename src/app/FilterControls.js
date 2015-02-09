@@ -88,14 +88,14 @@ define([
             //
             console.log('viewer.js.gis.dijit.FilterControls::_buildDefinitionQueryFromObject', arguments);
 
-            var filters = [];
+            var filters = [], filter;
 
             if (criteria.islands) {
-                var filter = this._formSqlInQueryFromArray(criteria.islands);
+                filter = this._formSqlInQueryFromArray(criteria.islands);
                 filters.push("Island IN (" + filter + ")");
             }
             if (criteria.severity) {
-                var filter = this._formSqlInQueryFromArray(criteria.severity);
+                filter = this._formSqlInQueryFromArray(criteria.severity);
                 filters.push("Sev_ IN (" + filter + ")");
             }
             return filters.join(' AND ');

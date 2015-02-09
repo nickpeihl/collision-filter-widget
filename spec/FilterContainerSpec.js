@@ -59,19 +59,21 @@ define([
                 expect(widget).toEqual(jasmine.any(WidgetUnderTest));
             });
         });
-        describe('set definition expressions', function() {
+        describe('setting definition expressions', function() {
             it('should set a definition expression on a single layer', function() {
-                var expression = 'Island IN (\'Orcas\')';
-                widget.setDefExp(expression);
-                expect(fLayer1.getDefinitionExpression()).toEqual(expression);
+                var filter = {};
+                filter.expression = 'Island IN (\'Orcas\')';
+                widget.setDefExp(filter);
+                expect(fLayer1.getDefinitionExpression()).toEqual(filter.expression);
             });
 
             it('should set a definition expression on multiple layers', function() {
-                var expression = 'Island IN (\'Orcas\')';
+                var filter = {};
+                filter.expression = 'Island IN (\'Orcas\')';
                 widget.layerIds.push('mySecondLayer');
-                widget.setDefExp(expression);
-                expect(fLayer1.getDefinitionExpression()).toEqual(expression);
-                expect(fLayer2.getDefinitionExpression()).toEqual(expression);
+                widget.setDefExp(filter);
+                expect(fLayer1.getDefinitionExpression()).toEqual(filter.expression);
+                expect(fLayer2.getDefinitionExpression()).toEqual(filter.expression);
             });
             // it('should filter by selected island', function() {
             //     var orcasCheck = query('input[type="checkbox"][value="Orcas"]', widget.domNode)[0];
