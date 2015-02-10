@@ -35,7 +35,7 @@ define([
         });
         describe('presentation', function() {
             it('adds a css class when clicked on (checkbox checked)', function() {
-                var node = query('input[type="checkbox"][value="Item1"]', widget.domNode)[0];
+                var node = query('#chkItem1', widget.domNode)[0];
                 widget.clicked({
                     target: node,
                     preventDefault: function(){},
@@ -46,7 +46,7 @@ define([
                 expect(domClass.contains(node.parentNode, 'btn-success')).toEqual(true);
             });
             it('removes a css class when clicked on (checkbox unchecked)', function() {
-                var node = query('input[type="checkbox"][value="Item1"]', widget.domNode)[0];
+                var node = query('#chkItem1', widget.domNode)[0];
                 domClass.add(node.parentNode, 'btn-success');
                 
                 widget.clicked({
@@ -61,7 +61,7 @@ define([
         });
         describe('Gather values', function() {
             it('gathers a single value', function() {
-                query('input[type="checkbox"][value="Item1"]', widget.domNode)[0].checked = true;
+                query('#chkItem1', widget.domNode)[0].checked = true;
 
                 widget._gatherData();
                 var actual = widget.get('data');
@@ -70,8 +70,8 @@ define([
                 });
             });
             it('gathers multiple values', function() {
-                query('input[type="checkbox"][value="Item1"]', widget.domNode)[0].checked = true;
-                query('input[type="checkbox"][value="Item2"]', widget.domNode)[0].checked = true;
+                query('#chkItem1', widget.domNode)[0].checked = true;
+                query('#chkItem2', widget.domNode)[0].checked = true;
 
                 widget._gatherData();
                 var actual = widget.get('data');

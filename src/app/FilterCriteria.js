@@ -13,6 +13,8 @@ define([
     'dojo/query',
     'dojo/topic',
 
+    'dijit/form/CheckBox',
+
     'dijit/_WidgetBase',
     'dijit/_TemplatedMixin'
 ], function(
@@ -29,6 +31,8 @@ define([
     on,
     query,
     topic,
+
+    Checkbox,
 
     _WidgetBase,
     _TemplatedMixin
@@ -85,6 +89,7 @@ define([
             console.log('src.app.FilterCriteria::_gatherData', arguments);
 
             var ingredients = array.map(query('input[type="checkbox"]:checked', this.domNode), function mapCheckboxes(node) {
+                console.log(node);
                 return node.value;
             }, this);
 
