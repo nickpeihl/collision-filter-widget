@@ -1,5 +1,5 @@
 define([
-    'app/FilterSeverity',
+    'widgets/FilterSeverity',
 
     'dojo/dom-class',
     'dojo/dom-construct',
@@ -11,7 +11,7 @@ define([
     domConstruct,
     query
 ) {
-    describe('app/FilterSeverity', function() {
+    describe('FilterSeverity', function() {
         var widget;
         var destroy = function (widget) {
             if (widget && widget.destroyRecursive) {

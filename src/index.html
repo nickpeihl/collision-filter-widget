@@ -8,7 +8,7 @@
         <title>Image Service Selector</title>
         <link rel="stylesheet" href="http://js.arcgis.com/3.12/dijit/themes/soria/soria.css"/>
         <link rel="stylesheet" href="http://js.arcgis.com/3.12/esri/css/esri.css" />
-        <link rel="stylesheet" href="app/resources/App.css" />
+        <link rel="stylesheet" href="widgets/resources/App.css" />
 
         <style>
          html, body, #map { height: 100%; width: 100%; margin: 0; padding: 0; }
@@ -27,12 +27,8 @@
                  async: true,
                  packages: [
                      {
-                         name: "esri-utils",
-                         location: path + 'esri-utils'
-                     },
-                     {
-                         name: "app",
-                         location: path + 'app'
+                         name: "widgets",
+                         location: path + 'widgets'
                      }
                  ]
              };
@@ -45,7 +41,7 @@
              "dojo/parser", "dojo/dom", "dojo/on",
              "esri/map",
              "esri/layers/FeatureLayer",
-             "app/FilterContainer",
+             "widgets/FilterContainer",
              "dojo/domReady!"
          ], function(
              parser, dom, on,

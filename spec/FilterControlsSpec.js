@@ -1,6 +1,6 @@
 define([
-    'app/config',
-    'app/FilterControls',
+    'widgets/config',
+    'widgets/FilterControls',
 
     'dojo/dom-construct',
     'dojo/query',

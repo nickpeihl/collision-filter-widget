@@ -1,5 +1,5 @@
 define([
-    'app/FilterCriteria',
+    'widgets/FilterCriteria',
 
     'dojo/dom-class',
     'dojo/dom-construct',
@@ -11,7 +11,7 @@ define([
     domConstruct,
     query
 ) {
-    describe('app/FilterCriteria', function() {
+    describe('FilterCriteria', function() {
         var widget;
         var destroy = function (widget) {
             if (widget && widget.destroyRecursive) {

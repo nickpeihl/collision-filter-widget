@@ -1,5 +1,5 @@
 define([
-    'app/FilterContainer',
+    'widgets/FilterContainer',
 
     'esri/map',
     'esri/layers/FeatureLayer',
@@ -19,7 +19,7 @@ define([
     query,
     win
 ) {
-    describe('app/FilterContainer', function() {
+    describe('FilterContainer', function() {
         var map, url, fLayer1, fLayer2;
         var widget;
         var destroy = function (widget) {

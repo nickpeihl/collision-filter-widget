@@ -1,5 +1,5 @@
 define([
-    'app/FilterIsland',
+    'widgets/FilterIsland',
     
     'dojo/dom-class',
     'dojo/dom-construct',
@@ -11,7 +11,7 @@ define([
     domConstruct,
     query
 ) {
-    describe('app/FilterIsland', function() {
+    describe('FilterIsland', function() {
         var widget;
         var destroy = function (widget) {
             if (widget && widget.destroyRecursive) {
