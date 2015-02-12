@@ -20,7 +20,7 @@ define([
     win
 ) {
     describe('FilterContainer', function() {
-        var map, url, fLayer1, fLayer2;
+        var map, fLayer1, fLayer2;
         var widget;
         var destroy = function (widget) {
             if (widget && widget.destroyRecursive) {
@@ -32,10 +32,10 @@ define([
         beforeEach(function() {
             var div = domConstruct.create('div', {id: 'map', style: 'width:300px;height:200px'}, win.body);
             map = new Map(div, {
-                basemap: "topo",
+                basemap: 'topo',
                 center: [-123.45,48.35],
                 zoom: 10,
-                sliderStyle: "small"
+                sliderStyle: 'small'
             });
             console.log('created map');
             var url1 = 'http://www.sjcgis.org/arcgis/rest/services/Andromeda/Traffic_Collisions/MapServer/0';

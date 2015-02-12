@@ -92,11 +92,11 @@ define([
 
             if (criteria.islands) {
                 filter = this._formSqlInQueryFromArray(criteria.islands);
-                filters.push("Island IN (" + filter + ")");
+                filters.push('Island IN (' + filter + ')');
             }
             if (criteria.severity) {
                 filter = this._formSqlInQueryFromArray(criteria.severity);
-                filters.push("Sev_ IN (" + filter + ")");
+                filters.push('Sev_ IN (' + filter + ')');
             }
             return filters.join(' AND ');
         },
@@ -108,7 +108,7 @@ define([
 
             var itemFilter = [];
             array.map(itemArray, function(item) {
-                itemFilter.push("'" + item + "'");
+                itemFilter.push('\'' + item + '\'');
             });
             return itemFilter;
         }

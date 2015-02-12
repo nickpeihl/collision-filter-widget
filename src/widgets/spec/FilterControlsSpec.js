@@ -128,7 +128,7 @@ define([
             });            
         });
         describe('topics', function() {
-            var topicSpies, results;
+            var topicSpies;
             beforeEach(function() {
                 topicSpies = {
                     filterCompleted: function(exp){
@@ -167,7 +167,7 @@ define([
                 });
                 it('should publish a specific filter topic', function(){
                     widget.filter();
-                    var expression = "Island IN ('Orcas','San Juan') AND Sev_ IN ('2')";
+                    var expression = 'Island IN (\'Orcas\',\'San Juan\') AND Sev_ IN (\'2\')';
                     expect(topicSpies.filterCompleted).toHaveBeenCalledWith(expression);
                 });
             });

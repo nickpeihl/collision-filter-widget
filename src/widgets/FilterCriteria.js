@@ -63,7 +63,6 @@ define([
             //
             console.log('src.app.FilterCriteria::setupConnections', arguments);
 
-            var self = this;
             this.own(
                 on(this.domNode, 'input[type="checkbox"]:change', lang.hitch(this, 'clicked'))
             );
